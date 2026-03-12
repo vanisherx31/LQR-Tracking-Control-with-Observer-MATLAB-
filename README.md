@@ -70,57 +70,67 @@ The final closed-loop system is
 
 The controller is tested with multiple reference signals.
 
+## Closed-Loop Tracking Performance
+
+The LQR controller with observer achieves accurate tracking of both reference signals.
+
+<p align="center">
+<img src="figures/tracking_results.png" width="800">
+</p>
+
+Top plot:
+- θ(t) tracking square-wave reference r₁(t)
+
+Bottom plot:
+- ψ(t) tracking sinusoidal reference r₂(t)
+
 ## Square Wave Tracking
 
-Reference:
+The first experiment evaluates the system's ability to track a square-wave reference.
 
+<p align="center">
+<img src="figures/theta_tracking.png" width="800">
+</p>
 
-Result:
-
-System output θ(t) tracks the square wave input with small transient error.
-
----
+The controller tracks the square-wave input with minimal steady-state error and fast transient response.
 
 ## Sinusoidal Tracking
 
-Reference:
+The second experiment evaluates sinusoidal reference tracking.
 
+<p align="center">
+<img src="figures/psi_tracking.png" width="800">
+</p>
 
-Result:
-
-ψ(t) tracks the sinusoidal input with negligible steady-state error.
-
----
+The ψ(t) output closely follows the sinusoidal reference signal with smooth dynamics.
 
 ## Circular Trajectory Tracking
 
-To generate a circle of radius 2:
+To generate a circular trajectory of radius 2, the references are defined as
 
+r₁(t) = 2 cos(ωt)  
+r₂(t) = 2 sin(ωt)
 
-This produces
+<p align="center">
+<img src="figures/circle_phase_plot.png" width="500">
+</p>
 
-
-which corresponds to a circle centered at the origin.
-
-Example trajectory:
-
-
----
+The phase trajectory θ vs ψ converges to a circle of radius 2 in steady state.
 
 ## Rotated Elliptical Trajectory
 
-Ellipse parameters:
+An ellipse with semi-axes
 
+a = 2  
+b = 1/3
 
-Unrotated ellipse:
+is rotated by π/4 to generate a rotated reference trajectory.
 
+<p align="center">
+<img src="figures/ellipse_phase_plot.png" width="500">
+</p>
 
-where
-
-
-The output trajectory converges to the rotated ellipse in steady state.
-
----
+The system output converges to the desired rotated elliptical trajectory.
 
 # Example Results
 
