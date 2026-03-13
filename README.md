@@ -243,11 +243,31 @@ b = 1/3
 
 is rotated by π/4 to generate a rotated reference trajectory.
 
+The reference signals are obtained using a rotation matrix:
+
+$$
+r_1(t) = \cos(\phi)x(t) - \sin(\phi)y(t)
+$$
+
+$$
+r_2(t) = \sin(\phi)x(t) + \cos(\phi)y(t)
+$$
+
+where
+
+$$
+x(t) = 2\cos(\omega t)
+$$
+
+$$
+y(t) = \frac{1}{3}\sin(\omega t)
+$$
+
 <p align="center">
 <img src="figures/ellipse_phaseplot.png" width="500">
 </p>
 
-The system output converges to the desired rotated elliptical trajectory.
+The phase trajectory $(\theta, \psi)$ converges to the desired rotated elliptical trajectory in steady state.
 
 # Example Results
 
@@ -265,6 +285,23 @@ Phase trajectories:
 
 # Repository Structure
 
+project-root
+│
+├── Matlab            # MATLAB simulation scripts
+│   ├── AAE564F14R1 (1).m
+│   ├── AAE564F1.m
+│   ├── AAE564F14R1.m
+│   └── AAE564F23.m
+│
+├── figures           # Simulation plots and results
+│   ├── aero2.png
+│   ├── tracking_results.png
+│   ├── theta_tracking.png
+│   ├── psi_tracking.png
+│   ├── circle_phase_plot.png
+│   └── ellipse_phase_plot.png
+│
+└── README.md         # Project documentation
 
 --
 
