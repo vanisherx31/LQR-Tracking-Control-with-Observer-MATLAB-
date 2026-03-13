@@ -244,7 +244,7 @@ b = 1/3
 is rotated by π/4 to generate a rotated reference trajectory.
 
 <p align="center">
-<img src="figures/ellipse_phase_plot.png" width="500">
+<img src="figures/ellipse_phaseplot.png" width="500">
 </p>
 
 The system output converges to the desired rotated elliptical trajectory.
