@@ -21,50 +21,167 @@ The simulations are implemented in **MATLAB** and demonstrate closed-loop tracki
 
 The system is represented in state-space form:
 
-\[
-\dot{x} = Ax + Bu
-\]
+The Quanser Aero 2 system models a **two degree of freedom helicopter** with:
 
-\[
+- pitch angle $\theta$
+- yaw angle $\psi$
+
+The state vector is
+
+$$
+x =
+\begin{bmatrix}
+\theta \\
+\psi \\
+\dot{\theta} \\
+\dot{\psi}
+\end{bmatrix}
+$$
+
+The system is represented in state-space form:
+
+$$
+\dot{x} = Ax + Bu
+$$
+
+$$
 y = Cx
-\]
+$$
 
 where
 
+$$
+A =
+\begin{bmatrix}
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+-0.3208 & 0 & 0.0858 & 0 \\
+0 & 0 & 0 & -0.0806
+\end{bmatrix}
+$$
 
-The system outputs correspond to:
+$$
+B =
+\begin{bmatrix}
+0 & 0 \\
+0 & 0 \\
+0.0232 & 0.0099 \\
+-0.0224 & 0.0429
+\end{bmatrix}
+$$
 
+$$
+C =
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0
+\end{bmatrix}
+$$
+
+The outputs correspond to the **pitch and yaw angles**:
+
+$$
+y =
+\begin{bmatrix}
+\theta & \psi
+\end{bmatrix}
+$$
 
 --
 
 # Controller Design
 
-To enable **reference tracking**, the system is augmented with integral states:
+To enable **reference tracking**, the system is augmented with two integral states:
 
+$$
+\dot{x}_5 = \theta - r_1
+$$
 
-The optimal feedback gain is obtained using **LQR**:
+$$
+\dot{x}_6 = \psi - r_2
+$$
 
+The augmented state vector becomes
 
-Weighting matrices:
+$$
+x_a =
+\begin{bmatrix}
+x \\
+x_5 \\
+x_6
+\end{bmatrix}
+$$
 
+The augmented system is
+
+$$
+\dot{x}_a =
+\begin{bmatrix}
+A & 0 \\
+C & 0
+\end{bmatrix}
+x_a +
+\begin{bmatrix}
+B \\
+0
+\end{bmatrix}
+u
+$$
+
+The optimal feedback gain is obtained using **LQR** by minimizing
+
+$$
+J = \int_0^\infty (x_a^T Q x_a + u^T R u) dt
+$$
+
+Weighting matrices used in the design:
+
+$$
+Q =
+\begin{bmatrix}
+300 & 0 & 0 & 0 & 0 & 0 \\
+0 & 300 & 0 & 0 & 0 & 0 \\
+0 & 0 & 30 & 0 & 0 & 0 \\
+0 & 0 & 0 & 30 & 0 & 0 \\
+0 & 0 & 0 & 0 & 2000 & 0 \\
+0 & 0 & 0 & 0 & 0 & 2000
+\end{bmatrix}
+$$
+
+$$
+R =
+\begin{bmatrix}
+0.01 & 0 \\
+0 & 0.01
+\end{bmatrix}
+$$
 
 The resulting control law is
 
-**
---
+$$
+u = -K\hat{x}_a
+$$
 
 # Observer Design
 
-Since not all states are directly measured, a **Luenberger observer** is designed.
-**
+Since not all states are directly measured, a **Luenberger observer** is designed to estimate the system states.
 
 Observer dynamics:
 
+$$
+\dot{\hat{x}} =
+A\hat{x} + Bu + L(y - C\hat{x})
+$$
 
-The final closed-loop system is
+where $L$ is the observer gain matrix.
 
+The observer estimates the full augmented state which is then used in the feedback controller.
 
---
+The final closed-loop system consists of:
+
+- LQR state feedback  
+- Luenberger state estimator  
+- integral tracking states
 
 # Reference Tracking Experiments
 
