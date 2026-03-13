@@ -285,6 +285,8 @@ Phase trajectories:
 
 # Repository Structure
 
+```
+
 project-root
 │
 ├── Matlab            # MATLAB simulation scripts
@@ -303,7 +305,7 @@ project-root
 │
 └── README.md         # Project documentation
 
---
+```
 
 # Key Concepts Demonstrated
 
