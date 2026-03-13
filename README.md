@@ -15,7 +15,7 @@ The controller enables the system outputs to track various reference trajectorie
 
 The simulations are implemented in **MATLAB** and demonstrate closed-loop tracking performance.
 
----
+--
 
 # System Model
 
@@ -35,7 +35,7 @@ where
 The system outputs correspond to:
 
 
----
+--
 
 # Controller Design
 
@@ -51,7 +51,7 @@ Weighting matrices:
 The resulting control law is
 
 **
----
+--
 
 # Observer Design
 
@@ -64,7 +64,7 @@ Observer dynamics:
 The final closed-loop system is
 
 
----
+--
 
 # Reference Tracking Experiments
 
@@ -144,12 +144,12 @@ Phase trajectories:
 - Circular motion
 - Rotated ellipse motion
 
----
+--
 
 # Repository Structure
 
 
----
+--
 
 # Key Concepts Demonstrated
 
@@ -163,14 +163,14 @@ This project demonstrates:
 - Closed-loop stability
 - MATLAB simulation
 
----
+--
 
 # Tools Used
 
 - MATLAB
 - Control Systems Toolbox
 
----
+--
 
 # Author
 
