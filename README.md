@@ -303,6 +303,9 @@ project-root
 │   ├── circle_phase_plot.png
 │   └── ellipse_phase_plot.png
 │
+├── report
+│   └── Integral_Control_Design_for_Quanser_Aero_2.pdf
+│
 └── README.md         # Project documentation
 
 ```
